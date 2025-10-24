@@ -1,0 +1,65 @@
+name: Tests
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main, develop]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        php: [8.1, 8.2, 8.3]
+        laravel: [10.*, 11.*, 12.*]
+        stability: [prefer-lowest, prefer-stable]
+        exclude:
+          - php: 8.1
+            laravel: 12.*
+
+    name: PHP ${{ matrix.php }} - Laravel ${{ matrix.laravel }} - ${{ matrix.stability }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite
+          coverage: none
+
+      - name: Install dependencies
+        run: |
+          composer require "laravel/framework:${{ matrix.laravel }}" --no-interaction --no-update
+          composer update --${{ matrix.stability }} --prefer-dist --no-interaction
+
+      - name: Execute tests
+        run: composer test
+
+      - name: Execute PHPStan
+        run: composer phpstan
+
+  coverage:
+    runs-on: ubuntu-latest
+    name: Coverage
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: 8.2
+          extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite
+          coverage: xdebug
+
+      - name: Install dependencies
+        run: composer install --prefer-dist --no-interaction
+
+      - name: Execute tests with coverage
+        run: ./vendor/bin/pest --coverage --min=80
+
