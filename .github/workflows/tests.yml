@@ -41,7 +41,8 @@ jobs:
           elif [[ "${{ matrix.laravel }}" == "11.*" ]]; then
             composer require "orchestra/testbench:^9.0" --no-interaction --no-update --dev
           elif [[ "${{ matrix.laravel }}" == "12.*" ]]; then
-            composer require "orchestra/testbench:^9.0" --no-interaction --no-update --dev
+            composer require "orchestra/testbench:^10.0" --no-interaction --no-update --dev
+            composer require "pestphp/pest:^3.0" --no-interaction --no-update --dev || true
           fi
           composer update --${{ matrix.stability }} --prefer-dist --no-interaction
 
