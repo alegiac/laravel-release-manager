@@ -2,5 +2,5 @@
 
 use Alegiac\ReleaseManager\Tests\TestCase;
 
-uses(TestCase::class)->in('Feature', 'Unit');
+uses(TestCase::class)->in('Unit');
 
