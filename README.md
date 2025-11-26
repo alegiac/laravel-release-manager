@@ -3,7 +3,6 @@
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/alegiac/laravel-release-manager.svg?style=flat-square)](https://packagist.org/packages/alegiac/laravel-release-manager)
 [![Total Downloads](https://img.shields.io/packagist/dt/alegiac/laravel-release-manager.svg?style=flat-square)](https://packagist.org/packages/alegiac/laravel-release-manager)
 [![Tests](https://github.com/alegiac/laravel-release-manager/actions/workflows/tests.yml/badge.svg)](https://github.com/alegiac/laravel-release-manager/actions/workflows/tests.yml)
-[![Code Coverage](https://codecov.io/gh/alegiac/laravel-release-manager/branch/main/graph/badge.svg)](https://codecov.io/gh/alegiac/laravel-release-manager)
 [![License](https://img.shields.io/packagist/l/alegiac/laravel-release-manager.svg?style=flat-square)](https://packagist.org/packages/alegiac/laravel-release-manager)
 [![PHP Version](https://img.shields.io/packagist/php-v/alegiac/laravel-release-manager.svg?style=flat-square)](https://packagist.org/packages/alegiac/laravel-release-manager)
 
